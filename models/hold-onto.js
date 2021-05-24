@@ -18,6 +18,8 @@ const HoldOnto = sequelize.define('hold_onto',{
   updatedAt:      { type: DataTypes.DATE, field: 'updated_at', defaultValue: null,},
 },{
 
+  freezeTableName: true
+
 });
 
 export default HoldOnto
