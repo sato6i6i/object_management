@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
 
-const LeaseRentalPc = sequelize.define('lease_rental_pc',{
+const LeaseRentalPcs = sequelize.define('lease_rental_pc',{
   contracTnumber:  { type: DataTypes.STRING, field: 'contract_number', defaultValue: null,},
   productName:     { type: DataTypes.STRING, field: 'product_name', defaultValue: null,},
   os:              { type: DataTypes.STRING, field: 'os', defaultValue: null,},
@@ -16,7 +16,7 @@ const LeaseRentalPc = sequelize.define('lease_rental_pc',{
   createdAt:       { type: DataTypes.DATE, field: 'created_at', defaultValue: null,},
   updatedAt:       { type: DataTypes.DATE, field: 'updated_at', defaultValue: null,},
 },{
-
+  freezeTableName: true
 });
 
-export default 
+export default LeaseRentalPcs

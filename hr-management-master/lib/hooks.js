@@ -109,3 +109,68 @@ export function useHoldOnto(id = '') {
     isError: isError
   }
 }
+
+export function useCMaterial(id = '') {
+  const { data, error } = useSWR(`/api/construction_materials/${id}`, fetcher)
+  const isLoading = !error && !data
+  const isError = error
+  const hasCMaterial = Boolean(data?.construction_materials)
+
+  return {
+    construction_materials: data?.construction_materials || null,
+    isLoading: isLoading,
+    isError: isError
+  }
+}
+
+export function usePc(id = '') {
+  const { data, error } = useSWR(`/api/lease_rental_pc/${id}`, fetcher)
+  const isLoading = !error && !data
+  const isError = error
+  const hasPc = Boolean(data?.lease_rental_pc)
+
+  return {
+    lease_rental_pc: data?.lease_rental_pc || null,
+    isLoading: isLoading,
+    isError: isError
+  }
+}
+
+export function usePhone(id = '') {
+  const { data, error } = useSWR(`/api/phone_wifi/${id}`, fetcher)
+  const isLoading = !error && !data
+  const isError = error
+  const hasPc = Boolean(data?.phone_wifi)
+
+  return {
+    phone_wifi: data?.phone_wifi || null,
+    isLoading: isLoading,
+    isError: isError
+  }
+}
+
+export function useFixedAsset(id = '') {
+  const { data, error } = useSWR(`/api/fixed_asset/${id}`, fetcher)
+  const isLoading = !error && !data
+  const isError = error
+  const hasPc = Boolean(data?.fixed_asset)
+
+  return {
+    fixed_asset: data?.fixed_asset || null,
+    isLoading: isLoading,
+    isError: isError
+  }
+}
+
+export function useDisasterStockpile(id = '') {
+  const { data, error } = useSWR(`/api/disaster_stockpile/${id}`, fetcher)
+  const isLoading = !error && !data
+  const isError = error
+  const hasPc = Boolean(data?.disaster_stockpile)
+
+  return {
+    disaster_stockpile: data?.disaster_stockpile || null,
+    isLoading: isLoading,
+    isError: isError
+  }
+}

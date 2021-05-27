@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
 
-const PhoneWifi = sequelize.define('', {
+const PhoneWifis = sequelize.define('phone_wifi', {
   telephoneNumber:      { type: DataTypes.STRING, field: 'telephone_number', defaultValue: null, },
   carrier:              { type: DataTypes.STRING, field: 'carrier', defaultValue: null, },
   typeTelWifi:          { type: DataTypes.STRING, field: 'type_tel_wifi', defaultValue: null, },
@@ -21,12 +21,12 @@ const PhoneWifi = sequelize.define('', {
   processReqDate:       { type: DataTypes.DATEONLY, field: 'process_req_date', defaultValue: null, },
   processCompDate:      { type: DataTypes.DATEONLY, field: 'process_comp_date', defaultValue: null, },
   note:                 { type: DataTypes.TEXT, field: 'note', defaultValue: null, },
-  staffId:              { type: DataTypes.INTEGER, field: 'staff_id ', defaultValue: null, },
+  staffId:              { type: DataTypes.INTEGER, field: 'staff_id', defaultValue: null, },
   monthly:              { type: DataTypes.INTEGER, field: 'monthly', defaultValue: null, },
   createdAt:            { type: DataTypes.DATE, field: 'created_at', defaultValue: null, },
   updatedAt:            { type: DataTypes.DATE, field: 'updated_at', defaultValue: null, },
 },{
-
+  freezeTableName: true
 });
 
-export default PhoneWifi
+export default PhoneWifis

@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
 
-const DisasterStockpile = sequelize.define('', {
+const DisasterStockpiles = sequelize.define('disaster_stockpile', {
   comfirmDate:      { type: DataTypes.DATEONLY, field: 'comfirm_date', defaultValue: null, },
   productName:      { type: DataTypes.STRING, field: 'product_name', defaultValue: null, },
   buyQuantity:      { type: DataTypes.INTEGER, field: 'buy_quantity', defaultValue: null, },
@@ -19,7 +19,7 @@ const DisasterStockpile = sequelize.define('', {
   createdAt:        { type: DataTypes.DATE, field: 'created_at', defaultValue: null, },
   updatedAt:        { type: DataTypes.DATE, field: 'updated_at', defaultValue: null, },
 },{
-
+  freezeTableName: true
 });
 
-export default DisasterStockpile
+export default DisasterStockpiles

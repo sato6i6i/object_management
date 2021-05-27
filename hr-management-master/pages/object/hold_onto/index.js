@@ -3,16 +3,17 @@ import Layout from '../../../components/layout'
 import ObjectNavigation from '../../../components/object-navigation'
 import { useUser,useHoldOnto } from '../../../lib/hooks'
 
-const HoldOnto = () => {
+const HoldOntos = () => {
   const user = useUser()
   const holdonto = useHoldOnto()
-  
+
+
   console.log(holdonto)
-  
+
   if (!holdonto) {
     return null
   }
-  
+
   const tbody = !holdonto.hold_onto ? null : holdonto.hold_onto.map(h =>
     <Link href="/object/hold_onto/[id_hold_onto]" as={`/object/hold_onto/${h.id}`} key={h.id}>
       <tr className="hover:bg-gray-200">
@@ -30,19 +31,20 @@ const HoldOnto = () => {
       </tr>
     </Link>
    )
-   
+
    return (
      <Layout>
        <ObjectNavigation page="hold_onto" />
-       
+
        <Link href="/object/hold_onto/[id_hold_onto]" as="/object/hold_onto/new">
-       
+
          <div className="mb-4 flex justify-end">
-          <button type="link" className="btn">新規作成</button>
+          <button type="link" disabled={!user.data}
+                  className={user.data ? "btn" : "btn-disabled"}>新規作成</button>
          </div>
-        
+
        </Link>
-      
+
        <table className="block overflow-x-scroll whitespace-no-wrap">
          <thead>
            <tr>
@@ -64,9 +66,9 @@ const HoldOnto = () => {
          </tbody>
        </table>
      </Layout>
-  
-  
-  ) 
+
+
+  )
 }
 
-export default HoldOnto
+export default HoldOntos

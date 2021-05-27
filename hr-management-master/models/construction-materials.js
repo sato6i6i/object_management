@@ -8,7 +8,7 @@ const ConstructionMaterials = sequelize.define('construction_materials',{
   productName:            { type: DataTypes.STRING, field: 'product_name', defaultValue: null,},
   productType:            { type: DataTypes.STRING, field: 'product_type', defaultValue: null,},
   credit:                 { type: DataTypes.STRING, field: 'credit', defaultValue: null,},
-  quantity:               { type: DataTypes.INTEGER, field: 'quantitiy', defaultValue: null,},
+  quantity:               { type: DataTypes.INTEGER, field: 'quantity', defaultValue: null,},
   unitPrice:              { type: DataTypes.INTEGER, field: 'unit_price', defaultValue: null,},
   price:                  { type: DataTypes.INTEGER, field: 'price', defaultValue: null,},
   wbs:                    { type: DataTypes.INTEGER, field: 'wbs', defaultValue: null,},

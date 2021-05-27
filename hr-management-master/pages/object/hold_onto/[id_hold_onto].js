@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import Layout from '../../../components/layout';
-import ObjectNavigation from '../../../components/object-navigation';
-import { useHoldOnto,useStaff } from '../../../lib/hooks';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Layout from '../../../components/layout'
+import ObjectNavigation from '../../../components/object-navigation'
+import { useHoldOnto,useStaff } from '../../../lib/hooks'
 
 const HoldOnto = () => {
   const router = useRouter();
@@ -90,7 +90,7 @@ const HoldOnto = () => {
             <div className="w-2/3">
               <input type="text" name="customerStaff" value={holdOnto.customerStaff || ''} onChange={handleChange}
               className="form-inline-input"/>
-              <select>
+              <select　name="customerStaff">
                 <option value={holdOnto.customerStaff}>{holdOnto.customerStaff}</option>
                 {sbody}
               </select>
