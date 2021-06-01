@@ -71,8 +71,15 @@ const PhoneWifi = () => {
               <label htmlFor="carrier" className="form-inline-label">キャリア</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="carrier" value={phoneWifi.carrier || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select  name="carrier" value={phoneWifi.carrier || ''} onChange={handleChange} className="form-inline-input">
+                <option value=""></option>
+                <option value="ドコモ">ドコモ</option>
+                <option value="Softbank">Softbank</option>
+                <option value="KDDI">KDDI</option>
+                <option value="楽天モバイル">楽天モバイル</option>
+                <option value="その他">その他</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 
@@ -81,8 +88,12 @@ const PhoneWifi = () => {
               <label htmlFor="typeTelWifi" className="form-inline-label">種別</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="typeTelWifi" value={phoneWifi.typeTelWifi || ''} onChange={handleChange} required
-              className="form-inline-input"/>
+              <select  name="typeTelWifi" value={phoneWifi.typeTelWifi || ''} onChange={handleChange} className="form-inline-input">
+              　<option value=""></option>
+                <option value="携帯">携帯</option>
+                <option value="Wi-Fi">Wi-Fi</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 
@@ -121,8 +132,15 @@ const PhoneWifi = () => {
               <label htmlFor="processName" className="form-inline-label">手続き名</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="processName" value={phoneWifi.processName || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="processName" value={phoneWifi.processName || ''} onChange={handleChange}
+              className="form-inline-input">
+                <option value=""></option>
+                <option value="購入">購入</option>
+                <option value="機種変更">機種変更</option>
+                <option value="名義変更">名義変更</option>
+                <option value="請求先変更">請求先変更</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 
@@ -151,8 +169,13 @@ const PhoneWifi = () => {
               <label htmlFor="buyMethod" className="form-inline-label">購入方法</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="buyMethod" value={phoneWifi.buyMethod || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="buyMethod" value={phoneWifi.buyMethod || ''} onChange={handleChange}
+              className="form-inline-input">
+              　<option value=""></option>
+                <option value="一括">一括</option>
+                <option value="分割">分割</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 
@@ -191,8 +214,13 @@ const PhoneWifi = () => {
               <label htmlFor="sharepackEntry" className="form-inline-label">シェアパック加入</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="sharepackEntry" value={phoneWifi.sharepackEntry || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="sharepackEntry" value={phoneWifi.sharepackEntry || ''} onChange={handleChange}
+              className="form-inline-input">
+              　<option value=""></option>
+                <option value="あり">あり</option>
+                <option value="なし">なし</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 

@@ -141,8 +141,18 @@ const DisasterStockpile = () => {
               <label htmlFor="status" className="form-inline-label">ステータス</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="status" value={disasterStockpile.status || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="status" value={disasterStockpile.status || ''} onChange={handleChange}
+              className="form-inline-input">
+                <option value=""></option>
+                <option value="購入">購入</option>
+                <option value="配布済">配布済</option>
+                <option value="使用済">使用済</option>
+                <option value="保管中">保管中</option>
+                <option value="期限切れ">期限切れ</option>
+                <option value="廃棄">廃棄</option>
+                <option value="寄贈">寄贈</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 
@@ -151,8 +161,15 @@ const DisasterStockpile = () => {
               <label htmlFor="storagePlace" className="form-inline-label">保管場所</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="storagePlace" value={disasterStockpile.storagePlace || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="storagePlace" value={disasterStockpile.storagePlace || ''} onChange={handleChange}
+              className="form-inline-input">
+              　<option value=""></option>
+                <option value="EB">EB</option>
+                <option value="3階倉庫">3階倉庫</option>
+                <option value="3F裏ロッカー">3F裏ロッカー</option>
+                <option value="3F事務所内">3F事務所内</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 

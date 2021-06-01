@@ -8,7 +8,6 @@ const HoldOntos = () => {
   const holdonto = useHoldOnto()
 
 
-  console.log(holdonto)
 
   if (!holdonto) {
     return null

@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import Form from '../components/form'
 
 const Signup = () => {
-  useUser({ redirectTo: '/', redirectIfFound: true })
+  useUser({ redirectTo: '/staff', redirectIfFound: true })
 
   const [errorMsg, setErrorMsg] = useState('')
 

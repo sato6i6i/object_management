@@ -13,7 +13,6 @@ const HoldOnto = () => {
   const [submittable, setSubmittable] = useState(false)
   const [deletable, setDeletable] = useState(false)
 
-  console.log(router.query);
 
   useEffect(() => {
     setHoldOnto(Array.isArray(h.hold_onto) ? h.hold_onto[0] : '')
@@ -39,7 +38,7 @@ const HoldOnto = () => {
     e.preventDefault()
     setSubmittable(true)
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value
+    const value = target.value
     const name = target.name
     setHoldOnto({...holdOnto, [name]:value})
   }
@@ -88,12 +87,11 @@ const HoldOnto = () => {
               <label htmlFor="customerStaff" className="form-inline-label">お客様担当者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="customerStaff" value={holdOnto.customerStaff || ''} onChange={handleChange}
-              className="form-inline-input"/>
-              <select　name="customerStaff">
-                <option value={holdOnto.customerStaff}>{holdOnto.customerStaff}</option>
+              <select value={holdOnto.customerStaff || ''} onChange={handleChange} name="customerStaff" className="form-inline-input">
+                <option value=""></option>
                 {sbody}
               </select>
+              <input type = "hidden" />
             </div>
           </div>
 

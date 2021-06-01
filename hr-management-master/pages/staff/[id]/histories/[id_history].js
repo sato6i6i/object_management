@@ -13,8 +13,7 @@ const History = () => {
   const [history, setHistory] = useState()
   const [submittable, setSubmittable] = useState(false)
   const [deletable, setDeletable] = useState(false)
-  
-  console,log(router.query.id_history)
+
 
   useEffect(() => {
     setStaff(Array.isArray(s.staff) ? s.staff[0] : '')

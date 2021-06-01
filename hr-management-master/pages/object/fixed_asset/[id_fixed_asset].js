@@ -71,8 +71,15 @@ const FixedAsset = () => {
               <label htmlFor="assetsType" className="form-inline-label">種別</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="assetsType" value={fixedAsset.assetsType || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="assetsType" value={fixedAsset.assetsType || ''} onChange={handleChange}
+              className="form-inline-input">
+              　<option value=""></option>
+                <option value="建物付属設備">建物付属設備</option>
+                <option value="工具器具">工具器具</option>
+                <option value="備品">工具器具</option>
+                <option value="ソフトウェア">ソフトウェア</option>
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 
