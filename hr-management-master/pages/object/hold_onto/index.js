@@ -18,13 +18,13 @@ const HoldOntos = () => {
       <tr className="hover:bg-gray-200">
         <td className="p-2">{h.productName}</td>
         <td className="p-2">{h.serialCode}</td>
-        <td className="p-2">{h.customerStaff}</td>
+        <td className="p-2">{h.customerS?.fullName}</td>
         <td className="p-2">{h.getDate}</td>
-        <td className="p-2">{h.getStaff}</td>
+        <td className="p-2">{h.getS?.fullName}</td>
         <td className="p-2">{h.storagePeriod}</td>
         <td className="p-2">{h.storagePlace}</td>
         <td className="p-2">{h.payoutDate}</td>
-        <td className="p-2">{h.payoutStaff}</td>
+        <td className="p-2">{h.payoutS?.fullName}</td>
         <td className="p-2">{h.projectTitle}</td>
         <td className="p-2">{h.status}</td>
       </tr>

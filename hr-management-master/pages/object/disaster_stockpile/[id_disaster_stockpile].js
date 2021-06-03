@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../../components/layout'
 import ObjectNavigation from '../../../components/object-navigation'
-import { useDisasterStockpile } from '../../../lib/hooks'
+import { useDisasterStockpile,useStaff } from '../../../lib/hooks'
 
 const DisasterStockpile = () => {
   const router = useRouter();
+  const staff = useStaff()
   const d = useDisasterStockpile(router.query.id_disaster_stockpile)
   const [disasterStockpile, setDisasterStockpile] = useState()
   const [submittable, setSubmittable] = useState(false)
@@ -49,6 +50,11 @@ const DisasterStockpile = () => {
     }
   }
 
+  const sbody = !staff.staff ? null : staff.staff.map(s =>
+    <option value={s.staffId}>{s.fullName}</option>
+  )
+
+
   return (
     <Layout>
       <ObjectNavigation page="disaster_stockpile" />
@@ -71,7 +77,7 @@ const DisasterStockpile = () => {
               <label htmlFor="productName" className="form-inline-label">品名</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="productName" value={disasterStockpile.productName || ''} onChange={handleChange}
+              <input type="text" name="productName" value={disasterStockpile.productName || ''} onChange={handleChange} required
               className="form-inline-input"/>
             </div>
           </div>
@@ -81,7 +87,7 @@ const DisasterStockpile = () => {
               <label htmlFor="buyQuantity" className="form-inline-label">購入数</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="buyQuantity" value={disasterStockpile.buyQuantity || ''} onChange={handleChange} required
+              <input type="text" name="buyQuantity" value={disasterStockpile.buyQuantity || ''} onChange={handleChange}
               className="form-inline-input"/>
             </div>
           </div>
@@ -165,7 +171,7 @@ const DisasterStockpile = () => {
               className="form-inline-input">
               　<option value=""></option>
                 <option value="EB">EB</option>
-                <option value="3階倉庫">3階倉庫</option>
+                <option value="3階倉庫">3F倉庫</option>
                 <option value="3F裏ロッカー">3F裏ロッカー</option>
                 <option value="3F事務所内">3F事務所内</option>
               </select>
@@ -208,8 +214,12 @@ const DisasterStockpile = () => {
               <label htmlFor="staffId" className="form-inline-label">担当者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="staffId" value={disasterStockpile.staffId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="staffId" value={disasterStockpile.staffId || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 

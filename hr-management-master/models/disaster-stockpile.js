@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
+import Staff from './staff'
+
 
 const DisasterStockpiles = sequelize.define('disaster_stockpile', {
   comfirmDate:      { type: DataTypes.DATEONLY, field: 'comfirm_date', defaultValue: null, },
@@ -20,6 +22,11 @@ const DisasterStockpiles = sequelize.define('disaster_stockpile', {
   updatedAt:        { type: DataTypes.DATE, field: 'updated_at', defaultValue: null, },
 },{
   freezeTableName: true
+});
+
+DisasterStockpiles.belongsTo(Staff,{
+  foreignKey: "staffId",
+  targetKey: "staffId"
 });
 
 export default DisasterStockpiles

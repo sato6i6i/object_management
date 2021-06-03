@@ -1,5 +1,6 @@
 import { getSession } from '../../../lib/iron'
 import DisasterStockpiles from '../../../models/disaster-stockpile'
+import Staff from '../../../models/staff'
 
 export default async function staffHandler(req, res) {
   const session = await getSession(req)
@@ -13,8 +14,11 @@ export default async function staffHandler(req, res) {
       }
       const disasterstockpiles =
         req.query.id == 'new' ? [DisasterStockpiles.build()] : await DisasterStockpiles.findAll({where: {id: req.query.id}});
-
-      res.status(200).json({disaster_stockpile: disasterstockpiles || null})
+      const staff = !session ? null : await Staff.findAll({
+          attributes: ['staffId','fullName'],
+          order: [['staffId','ASC']]
+      })
+      res.status(200).json({disaster_stockpile: disasterstockpiles,staff:staff || null})
       break
 
     case 'POST':

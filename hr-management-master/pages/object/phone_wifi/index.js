@@ -17,7 +17,7 @@ const tbody = !phone.phone_wifi ? null : phone.phone_wifi.map(ph =>
       <td className="p-2">{ph.telephoneNumber}</td>
       <td className="p-2">{ph.carrier}</td>
       <td className="p-2">{ph.typeTelWifi}</td>
-      <td className="p-2">{ph.userId}</td>
+      <td className="p-2">{ph.UserId?.fullName}</td>
       <td className="p-2">{ph.modelNumber}</td>
       <td className="p-2">{ph.modelName}</td>
       <td className="p-2">{ph.processName}</td>
@@ -33,7 +33,7 @@ const tbody = !phone.phone_wifi ? null : phone.phone_wifi.map(ph =>
       <td className="p-2">{ph.processReqDate}</td>
       <td className="p-2">{ph.processCompDate}</td>
       <td className="p-2">{ph.note}</td>
-      <td className="p-2">{ph.staffId}</td>
+      <td className="p-2">{ph.StaffId?.fullName}</td>
       <td className="p-2">{ph.monthly}</td>
    </tr>
   </Link>

@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
+import Staff from './staff'
+
 
 const FixedAssets = sequelize.define('fixed_asset', {
   assetsCode:            { type: DataTypes.STRING, field: 'assets_code', defaultValue: null, },
@@ -29,5 +31,17 @@ const FixedAssets = sequelize.define('fixed_asset', {
 },{
   freezeTableName: true
 })
+
+FixedAssets.belongsTo(Staff,{
+  foreignKey:"userId",
+  targetKey:"staffId",
+  as:"UserId"
+});
+
+FixedAssets.belongsTo(Staff,{
+  foreignKey:"staffId",
+  targetKey:"staffId",
+  as:"StaffId"
+});
 
 export default FixedAssets

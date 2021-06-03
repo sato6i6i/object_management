@@ -26,7 +26,7 @@ const tbody = !cmaterial.construction_materials ? null : cmaterial.construction_
       <td className="p-2">{c.constructionForShort}</td>
       <td className="p-2">{c.deliveryDate}</td>
       <td className="p-2">{c.payoutDate}</td>
-      <td className="p-2">{c.staffId}</td>
+      <td className="p-2">{c.Staff?.fullName}</td>
       <td className="p-2">{c.inventoryDate}</td>
    </tr>
   </Link>

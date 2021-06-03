@@ -20,7 +20,7 @@ const tbody = !assets.fixed_asset ? null : assets.fixed_asset.map(a =>
       <td className="p-2">{a.quantity}</td>
       <td className="p-2">{a.getDate}</td>
       <td className="p-2">{a.commonDate}</td>
-      <td className="p-2">{a.userId}</td>
+      <td className="p-2">{a.UserId?.fullName}</td>
       <td className="p-2">{a.usePlace}</td>
       <td className="p-2">{a.getPrice}</td>
       <td className="p-2">{a.tax}</td>
@@ -34,7 +34,7 @@ const tbody = !assets.fixed_asset ? null : assets.fixed_asset.map(a =>
       <td className="p-2">{a.repaymentWbsname}</td>
       <td className="p-2">{a.other}</td>
       <td className="p-2">{a.inventoryDate}</td>
-      <td className="p-2">{a.staffId}</td>
+      <td className="p-2">{a.StaffId?.fullName}</td>
       <td className="p-2">{a.note}</td>
    </tr>
   </Link>

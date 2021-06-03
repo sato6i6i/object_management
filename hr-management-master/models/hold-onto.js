@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
-
+import Staff from './staff'
 
 const HoldOnto = sequelize.define('hold_onto',{
   productName:    { type: DataTypes.STRING, field: 'product_name', defaultValue: null,},
@@ -20,6 +20,24 @@ const HoldOnto = sequelize.define('hold_onto',{
 
   freezeTableName: true
 
+});
+
+HoldOnto.belongsTo(Staff,{
+  as:"customerS",
+  foreignKey: "customerStaff",
+  targetKey: "staffId"
+});
+
+HoldOnto.belongsTo(Staff,{
+  as:"getS",
+  foreignKey: "getStaff",
+  targetKey: "staffId"
+});
+
+HoldOnto.belongsTo(Staff,{
+  as:"payoutS",
+  foreignKey: "payoutStaff",
+  targetKey: "staffId"
 });
 
 export default HoldOnto

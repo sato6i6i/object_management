@@ -27,7 +27,7 @@ const tbody = !disasterStockpile.disaster_stockpile ? null : disasterStockpile.d
       <td className="p-2">{d.note1}</td>
       <td className="p-2">{d.note2}</td>
       <td className="p-2">{d.newApprovalDoc}</td>
-      <td className="p-2">{d.staffId}</td>
+      <td className="p-2">{d.Staff?.fullName}</td>
    </tr>
   </Link>
  )

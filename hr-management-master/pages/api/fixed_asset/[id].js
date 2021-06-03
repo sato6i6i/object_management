@@ -1,5 +1,6 @@
 import { getSession } from '../../../lib/iron'
 import FixedAssets from '../../../models/fixed-asset'
+import Staff from '../../../models/staff'
 
 export default async function staffHandler(req, res) {
   const session = await getSession(req)
@@ -13,8 +14,11 @@ export default async function staffHandler(req, res) {
       }
       const assets =
         req.query.id == 'new' ? [FixedAssets.build()] : await FixedAssets.findAll({where: {id: req.query.id}});
-
-      res.status(200).json({fixed_asset: assets || null})
+      const staff = !session ? null : await Staff.findAll({
+            attributes: ['staffId','fullName'],
+            order: [['staffId','ASC']]
+      })
+      res.status(200).json({fixed_asset: assets,staff:staff || null})
       break
 
     case 'POST':

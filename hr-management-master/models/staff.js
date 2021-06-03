@@ -64,4 +64,6 @@ const Staff = sequelize.define('Staff', {
   freezeTableName: true
 });
 
+
+
 export default Staff

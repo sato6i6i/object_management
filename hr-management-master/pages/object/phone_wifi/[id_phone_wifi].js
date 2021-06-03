@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../../components/layout'
 import ObjectNavigation from '../../../components/object-navigation'
-import { usePhone } from '../../../lib/hooks'
+import { usePhone,useStaff } from '../../../lib/hooks'
 
 const PhoneWifi = () => {
   const router = useRouter();
+  const staff = useStaff()
   const ph = usePhone(router.query.id_phone_wifi)
   const [phoneWifi, setPhone] = useState()
   const [submittable, setSubmittable] = useState(false)
@@ -49,6 +50,11 @@ const PhoneWifi = () => {
     }
   }
 
+  const sbody = !staff.staff ? null : staff.staff.map(s =>
+    <option value={s.staffId}>{s.fullName}</option>
+  )
+
+
   return (
     <Layout>
       <ObjectNavigation page="phone_wifi" />
@@ -61,7 +67,7 @@ const PhoneWifi = () => {
               <label htmlFor="telephoneNumber" className="form-inline-label">電話番号</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="telephoneNumber" value={phoneWifi.telephoneNumber || ''} onChange={handleChange}
+              <input type="text" name="telephoneNumber" value={phoneWifi.telephoneNumber || ''} onChange={handleChange} required
               className="form-inline-input"/>
             </div>
           </div>
@@ -102,8 +108,12 @@ const PhoneWifi = () => {
               <label htmlFor="userId" className="form-inline-label">利用者氏名</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="userId" value={phoneWifi.userId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="userId" value={phoneWifi.userId || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 
@@ -279,8 +289,12 @@ const PhoneWifi = () => {
               <label htmlFor="staffId" className="form-inline-label">担当者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="staffId" value={phoneWifi.staffId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="staffId" value={phoneWifi.staffId || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+            <input type = "hidden" />
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
+import Staff from './staff'
 
 const PhoneWifis = sequelize.define('phone_wifi', {
   telephoneNumber:      { type: DataTypes.STRING, field: 'telephone_number', defaultValue: null, },
@@ -28,5 +29,18 @@ const PhoneWifis = sequelize.define('phone_wifi', {
 },{
   freezeTableName: true
 });
+
+PhoneWifis.belongsTo(Staff,{
+  foreignKey:"userId",
+  targetKey:"staffId",
+  as:"UserId"
+});
+
+PhoneWifis.belongsTo(Staff,{
+  foreignKey:"staffId",
+  targetKey:"staffId",
+  as:"StaffId"
+})
+
 
 export default PhoneWifis

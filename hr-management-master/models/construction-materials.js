@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
+import Staff from './staff'
 
 
 const ConstructionMaterials = sequelize.define('construction_materials',{
@@ -22,5 +23,12 @@ const ConstructionMaterials = sequelize.define('construction_materials',{
 },{
 
 });
+
+ConstructionMaterials.belongsTo(Staff,{
+  foreignKey: "staffId",
+  targetKey: "staffId"
+});
+
+
 
 export default ConstructionMaterials

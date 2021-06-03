@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../../components/layout'
 import ObjectNavigation from '../../../components/object-navigation'
-import { useFixedAsset } from '../../../lib/hooks'
+import { useFixedAsset,useStaff } from '../../../lib/hooks'
 
 const FixedAsset = () => {
   const router = useRouter();
+  const staff = useStaff()
   const f = useFixedAsset(router.query.id_fixed_asset)
   const [fixedAsset, setFixedAsset] = useState()
   const [submittable, setSubmittable] = useState(false)
@@ -27,6 +28,7 @@ const FixedAsset = () => {
   async function handleSubmit(e) {
     e.preventDefault()
     setSubmittable(false)
+    fixedAsset.userId = fixedAsset.userId === "" ? null : fixedAsset.userId
     const method= !fixedAsset.id ? 'POST' : 'PUT'
     const res = await fetch(`/api/fixed_asset/${router.query.id_fixed_asset}`,{method: method, body:JSON.stringify(fixedAsset)});
     !fixedAsset.id && router.push(`/object/fixed_asset`)
@@ -36,7 +38,7 @@ const FixedAsset = () => {
     e.preventDefault()
     setSubmittable(true)
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value
+    const value = target.value
     const name = target.name
     setFixedAsset({...fixedAsset,[name]:value})
   }
@@ -48,6 +50,11 @@ const FixedAsset = () => {
       router.push(`/object/fixed_asset`)
     }
   }
+
+  const sbody = !staff.staff ? null : staff.staff.map(s =>
+    <option value={s.staffId}>{s.fullName}</option>
+  )
+
 
   return (
     <Layout>
@@ -61,7 +68,7 @@ const FixedAsset = () => {
               <label htmlFor="assetsCode" className="form-inline-label">資産コード</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="assetsCode" value={fixedAsset.assetsCode || ''} onChange={handleChange}
+              <input type="text" name="assetsCode" value={fixedAsset.assetsCode || ''} onChange={handleChange} required
               className="form-inline-input"/>
             </div>
           </div>
@@ -128,8 +135,12 @@ const FixedAsset = () => {
               <label htmlFor="userId" className="form-inline-label">利用者氏名</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="userId" value={fixedAsset.userId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select type="text" name="userId" value={fixedAsset.userId || ''} onChange={handleChange}
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 
@@ -269,8 +280,12 @@ const FixedAsset = () => {
               <label htmlFor="staffId" className="form-inline-label">担当者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="staffId" value={fixedAsset.staffId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select type="text" name="staffId" value={fixedAsset.staffId || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 

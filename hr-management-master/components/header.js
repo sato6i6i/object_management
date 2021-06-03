@@ -16,7 +16,7 @@ const Header = () => {
           </li>
           <li className="mr-4 first:ml-auto">
             <Link href="/object/hold_onto">
-              <a>物品管理</a>
+              <a>備品管理</a>
             </Link>
 
           </li>
@@ -29,7 +29,7 @@ const Header = () => {
               <Link href="/login">
                 <a>ログイン</a>
               </Link>
-            </li>            
+            </li>
           )}
         </ul>
       </nav>

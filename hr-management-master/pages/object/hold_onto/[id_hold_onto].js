@@ -87,7 +87,7 @@ const HoldOnto = () => {
               <label htmlFor="customerStaff" className="form-inline-label">お客様担当者</label>
             </div>
             <div className="w-2/3">
-              <select value={holdOnto.customerStaff || ''} onChange={handleChange} name="customerStaff" className="form-inline-input">
+              <select value={holdOnto.customerStaff || ''} onChange={handleChange} name="customerStaff" className="form-inline-input" required>
                 <option value=""></option>
                 {sbody}
               </select>
@@ -110,8 +110,12 @@ const HoldOnto = () => {
               <label htmlFor="getStaff" className="form-inline-label">受領者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="getStaff" value={holdOnto.getStaff || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="getStaff" value={holdOnto.getStaff || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 
@@ -150,8 +154,12 @@ const HoldOnto = () => {
               <label htmlFor="payoutStaff" className="form-inline-label">払い出し者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="payoutStaff" value={holdOnto.payoutStaff || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="payoutStaff" value={holdOnto.payoutStaff || ''} onChange={handleChange}
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 

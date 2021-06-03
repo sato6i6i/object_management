@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../../components/layout'
 import ObjectNavigation from '../../../components/object-navigation'
-import { useCMaterial } from '../../../lib/hooks'
+import { useCMaterial,useStaff } from '../../../lib/hooks'
 
 const CMaterial = () => {
   const router = useRouter();
+  const staff = useStaff()
   const c = useCMaterial(router.query.id_construction_materials)
   const [cMaterial, setCMaterial] = useState()
   const [submittable, setSubmittable] = useState(false)
@@ -48,6 +49,11 @@ const CMaterial = () => {
       router.push(`/object/construction_materials`)
     }
   }
+
+  const sbody = !staff.staff ? null : staff.staff.map(s =>
+    <option value={s.staffId}>{s.fullName}</option>
+  )
+
 
   return (
     <Layout>
@@ -181,8 +187,12 @@ const CMaterial = () => {
               <label htmlFor="staffId" className="form-inline-label">担当者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="staffId" value={cMaterial.staffId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="staffId" value={cMaterial.staffId || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type="hidden" />
             </div>
           </div>
 

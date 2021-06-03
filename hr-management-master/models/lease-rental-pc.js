@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
+import Staff from './staff'
+
 
 const LeaseRentalPcs = sequelize.define('lease_rental_pc',{
   contracTnumber:  { type: DataTypes.STRING, field: 'contract_number', defaultValue: null,},
@@ -17,6 +19,11 @@ const LeaseRentalPcs = sequelize.define('lease_rental_pc',{
   updatedAt:       { type: DataTypes.DATE, field: 'updated_at', defaultValue: null,},
 },{
   freezeTableName: true
+});
+
+LeaseRentalPcs.belongsTo(Staff,{
+  foreignKey: "userId",
+  targetKey: "staffId"
 });
 
 export default LeaseRentalPcs

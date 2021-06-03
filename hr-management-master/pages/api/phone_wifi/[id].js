@@ -1,5 +1,6 @@
 import { getSession } from '../../../lib/iron'
 import PhoneWifis from '../../../models/phone-wifi'
+import Staff from '../../../models/staff'
 
 export default async function staffHandler(req, res) {
   const session = await getSession(req)
@@ -13,8 +14,11 @@ export default async function staffHandler(req, res) {
       }
       const phoneWifis =
         req.query.id == 'new' ? [PhoneWifis.build()] : await PhoneWifis.findAll({where: {id: req.query.id}});
-
-      res.status(200).json({phone_wifi: phoneWifis || null})
+      const staff = !session ? null : await Staff.findAll({
+              attributes: ['staffId','fullName'],
+              order: [['staffId','ASC']]
+      })
+      res.status(200).json({phone_wifi: phoneWifis,staff:staff || null})
       break
 
     case 'POST':

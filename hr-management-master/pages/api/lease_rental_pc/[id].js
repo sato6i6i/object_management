@@ -1,5 +1,6 @@
 import { getSession } from '../../../lib/iron'
 import LeaseRentalPcs from '../../../models/lease-rental-pc'
+import Staff from '../../../models/staff'
 
 export default async function staffHandler(req, res) {
   const session = await getSession(req)
@@ -13,8 +14,11 @@ export default async function staffHandler(req, res) {
       }
       const pcs =
         req.query.id == 'new' ? [LeaseRentalPcs.build()] : await LeaseRentalPcs.findAll({where: {id: req.query.id}});
-
-      res.status(200).json({lease_rental_pc: pcs || null})
+      const staff = !session ? null : await Staff.findAll({
+            attributes: ['staffId','fullName'],
+            order: [['staffId','ASC']]
+      })
+      res.status(200).json({lease_rental_pc: pcs,staff:staff || null})
       break
 
     case 'POST':

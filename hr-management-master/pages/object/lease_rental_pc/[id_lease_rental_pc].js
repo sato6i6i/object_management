@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from '../../../components/layout'
 import ObjectNavigation from '../../../components/object-navigation'
-import { usePc } from '../../../lib/hooks'
+import { usePc,useStaff } from '../../../lib/hooks'
 
 const Pc = () => {
   const router = useRouter();
+  const staff = useStaff()
   const p = usePc(router.query.id_lease_rental_pc)
   const [pc, setPc] = useState()
   const [submittable, setSubmittable] = useState(false)
@@ -49,6 +50,11 @@ const Pc = () => {
     }
   }
 
+  const sbody = !staff.staff ? null : staff.staff.map(s =>
+    <option value={s.staffId}>{s.fullName}</option>
+  )
+
+
   return (
     <Layout>
       <ObjectNavigation page="lease_rental_pc" />
@@ -61,7 +67,7 @@ const Pc = () => {
               <label htmlFor="contracTnumber" className="form-inline-label">契約番号</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="contracTnumber" value={pc.contracTnumber || ''} onChange={handleChange}
+              <input type="text" name="contracTnumber" value={pc.contracTnumber || ''} onChange={handleChange} required
               className="form-inline-input"/>
             </div>
           </div>
@@ -81,7 +87,7 @@ const Pc = () => {
               <label htmlFor="os" className="form-inline-label">OS</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="os" value={pc.os || ''} onChange={handleChange} required
+              <input type="text" name="os" value={pc.os || ''} onChange={handleChange}
               className="form-inline-input"/>
             </div>
           </div>
@@ -101,7 +107,7 @@ const Pc = () => {
               <label htmlFor="pcName" className="form-inline-label">コンピューター名</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="pcName" value={pc.pcName || ''} onChange={handleChange}
+              <input type="text" name="pcName" value={pc.pcName || ''} onChange={handleChange} required
               className="form-inline-input"/>
             </div>
           </div>
@@ -131,8 +137,12 @@ const Pc = () => {
               <label htmlFor="userId" className="form-inline-label">使用者</label>
             </div>
             <div className="w-2/3">
-              <input type="text" name="userId" value={pc.userId || ''} onChange={handleChange}
-              className="form-inline-input"/>
+              <select name="userId" value={pc.userId || ''} onChange={handleChange} required
+              className="form-inline-input">
+                <option value=""></option>
+                {sbody}
+              </select>
+              <input type = "hidden" />
             </div>
           </div>
 
